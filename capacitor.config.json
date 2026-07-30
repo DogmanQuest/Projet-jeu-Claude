@@ -1,1 +1,9 @@
-
+{
+  "appId": "fr.antonin.centreoperations",
+  "appName": "Centre d'Opérations",
+  "webDir": "www",
+  "backgroundColor": "#0c0a09",
+  "android": {
+    "backgroundColor": "#0c0a09"
+  }
+}
