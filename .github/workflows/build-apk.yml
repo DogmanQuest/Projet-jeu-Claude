@@ -32,6 +32,14 @@ jobs:
       - name: Synchroniser les fichiers du jeu vers Android
         run: npx cap sync android
 
+      - name: Générer l'icône et l'écran de démarrage
+        run: npx --yes @capacitor/assets generate --android --assetPath resources
+
+      - name: Clé de signature stable (mises à jour sans désinstaller)
+        run: |
+          mkdir -p ~/.android
+          cp signing/debug.keystore ~/.android/debug.keystore
+
       - name: Compiler l'APK (debug, installable directement)
         working-directory: android
         run: |
