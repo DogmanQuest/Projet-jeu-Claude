@@ -1,0 +1,25 @@
+// Force explicitement l'utilisation de signing/debug.keystore pour tous les
+// builds "debug", au lieu de compter sur la convention implicite de Gradle
+// (~/.android/debug.keystore). Cette convention peut changer de comportement
+// selon les versions de l'Android Gradle Plugin — la copier ne suffit alors
+// plus, sans qu'aucune étape ne signale d'erreur. Ce script supprime cette
+// incertitude : la clé utilisée est toujours celle-ci, explicitement.
+allprojects {
+    plugins.withId('com.android.application') {
+        android {
+            signingConfigs {
+                debug {
+                    storeFile file("${System.getProperty('user.home')}/.android/debug.keystore")
+                    storePassword 'android'
+                    keyAlias 'androiddebugkey'
+                    keyPassword 'android'
+                }
+            }
+            buildTypes {
+                debug {
+                    signingConfig signingConfigs.debug
+                }
+            }
+        }
+    }
+}
