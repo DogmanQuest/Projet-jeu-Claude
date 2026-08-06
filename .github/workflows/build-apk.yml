@@ -44,7 +44,12 @@ jobs:
         working-directory: android
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          ./gradlew assembleDebug --no-daemon -I ../init-signing.gradle
+
+      - name: Vérifier l'empreinte de signature (visible dans les logs)
+        working-directory: android
+        run: |
+          keytool -list -v -keystore ~/.android/debug.keystore -storepass android -alias androiddebugkey | grep -A1 "SHA1:"
 
       - name: Publier l'APK
         uses: actions/upload-artifact@v4
