@@ -1,7 +1,7 @@
 /* Service worker — mode hors-ligne.
    Stratégie : cache d'abord, réseau en secours. À chaque nouvelle version
    du jeu, incrémenter CACHE_NAME pour forcer la mise à jour chez tout le monde. */
-const CACHE_NAME = "ops-center-v29";
+const CACHE_NAME = "ops-center-v31";
 const ASSETS = [
   "./",
   "./index.html",
